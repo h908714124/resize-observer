@@ -23,11 +23,9 @@ export function ButtonGroup({ children }) {
     useEffect(() => {
         if (!buttonGroupRef.current) return
         let { clientWidth, scrollWidth } = buttonGroupRef.current
-        if (clientWidth < scrollWidth) {
-            steps.current[numChildren] = scrollWidth
-        }
-        if (clientWidth < scrollWidth) {
+        if (numChildren && clientWidth < scrollWidth) {
             // overflow
+            steps.current[numChildren] = scrollWidth
             setNumChildren(numChildren - 1)
         } else if (steps.current[numChildren + 1] && clientWidth >= steps.current[numChildren + 1]) {
             // underflow
